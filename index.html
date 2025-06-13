@@ -245,6 +245,13 @@
 
     $('#clearFavsBtn').on('click', function () {
       let changed = false;
+      
+          const userConfirmed = confirm("Are you sure you want to clear favourites ?");
+    
+    if (!userConfirmed) {
+      alert("Action canceled.");
+      return;
+    }
 
       table.rows({ filter: 'applied' }).every(function () {
         const row = $(this.node());
