@@ -3,183 +3,292 @@
 <head>
   <meta charset="UTF-8">
   <title>Gypsy Jazz Backing Tracks</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  
-  <!-- DataTables + jQuery CDN -->
-  <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
 
-  <!-- PapaParse for CSV parsing -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+  <!-- DataTables CSS -->
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+  <!-- DataTables JS -->
+  <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
 
   <style>
     body {
-      font-family: Arial, sans-serif;
-      padding: 20px;
+      font-family: sans-serif;
+      margin: 40px;
     }
-
-    h1 {
-      text-align: center;
+    table {
+      width: 80%;
+      margin: auto;
     }
-
-    table.dataTable td {
-      vertical-align: middle;
+    thead input {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 4px;
     }
-
     .star {
       cursor: pointer;
-      font-size: 1.2em;
+      font-size: 18px;
       color: lightgray;
     }
-
     .star.fav {
       color: gold;
     }
-
-    .filter-buttons {
-      margin-bottom: 10px;
+    .button-row {
       text-align: center;
+      margin: 20px auto;
     }
-
-    .filter-buttons button {
-      margin: 0 5px;
-      padding: 5px 10px;
-    }
-
-    .filter-buttons button.active {
-      background-color: #007bff;
-      color: white;
-      border: none;
+    .button-row button {
+      margin: 5px;
+      padding: 10px 15px;
+      font-size: 14px;
+      cursor: pointer;
     }
   </style>
 </head>
 <body>
 
-  <h1>Gypsy Jazz Backing Tracks</h1>
+<h2 style="text-align:center">Gypsy Jazz Backing Tracks</h2>
 
-  <div class="filter-buttons">
-    <button data-filter="*" class="active">All</button>
-    <button data-filter="Soundslice">Soundslice</button>
-    <button data-filter="Youtube">YouTube</button>
-    <button data-filter="Favourite">★ Favourites</button>
-  </div>
+<div class="button-row">
+  <button id="randomBtn">🎲 Random From Favourite</button>
+  <button id="clearFiltersBtn">🚫 Clear All Filters</button>
+  <button id="clearFavsBtn">🧹 Clear Favourites (Filtered)</button>
+</div>
 
-  <table id="myTable" class="display" style="width:100%">
-    <thead>
-      <tr>
-        <th>Song</th>
-        <th>Type</th>
-        <th>Key</th>
-        <th>Details</th>
-        <th>Fav</th>
-      </tr>
-    </thead>
-    <tbody></tbody>
-  </table>
+<table id="myTable" class="display">
+  <thead>
+    <tr>
+      <th>Song</th>
+      <th>Type</th>
+      <th>Key</th>
+      <th>Details</th>
+      <th>Favourite</th>
+    </tr>
+    <tr class="filters">
+      <th><input type="text" placeholder="Filter" /></th>
+      <th><input type="text" placeholder="Filter" /></th>
+      <th><input type="text" placeholder="Filter" /></th>
+      <th><input type="text" placeholder="Filter" /></th>
+      <th><input type="text" placeholder="0 or 1" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td><a href="https://www.soundslice.com/slices/lGfkc/" target="_blank">After you’ve gone</a></td><td>Soundslice</td><td>G major</td><td>Dominant Chains</td><td></td></tr>
+    <tr><td><a href="https://www.soundslice.com/slices/1nfyc/" target="_blank">Aint Misbehavin</a></td><td>Soundslice</td><td>C major</td><td>-</td><td></td></tr>
+    <tr><td><a href="https://www.soundslice.com/slices/qKNkc/" target="_blank">All Of Me</a></td><td>Soundslice</td><td>C major</td><td>Christophe</td><td></td></tr>
+    <tr><td><a href="https://www.youtube.com/watch?v=iyHDHYrdWPs&pp=ygUvYWxsIHRoZSB0aGluZ3MgeW91IGFyZSBiYWNraW5nIHRyYWNrIHZhbiBoZW1lcnQ%3D" target="_blank">All The Things You Are</a></td><td>GI Youtube</td><td>-</td><td>251s</td><td></td></tr>
+    <tr><td><a href="https://www.soundslice.com/slices/Q1Dkc/" target="_blank">Anniversary Song | Danube</a></td><td>Soundslice</td><td>A minor</td><td>-</td><td></td></tr>
+    <tr><td><a href="https://www.soundslice.com/slices/t9Dkc/" target="_blank">Artillerie lourde</a></td><td>Soundslice</td><td>C major</td><td>-</td><td></td></tr>
+    <tr><td><a href="https://www.soundslice.com/slices/QLVkc/" target="_blank">Autumn Leaves</a></td><td>Soundslice</td><td>G minor</td><td>-</td><td></td></tr>
+    <tr><td><a href="https://www.soundslice.com/slices/GRP4c/" target="_blank">Avalon</a></td><td>Soundslice</td><td>F major</td><td>-</td><td></td></tr>
+    <tr><td><a href="https://www.soundslice.com/slices/Qhfyc/" target="_blank">Bei Mir Bist Du Schoen</a></td><td>Soundslice</td><td>G minor</td><td>-</td><td></td></tr>
+    <tr><td><a href="https://www.soundslice.com/slices/T1ckc/" target="_blank">Blue Drag</a></td><td>Soundslice</td><td>D minor</td><td>-</td><td></td></tr>
+    <tr><td><a href="https://www.soundslice.com/slices/5tVkc/" target="_blank">Bossa Dorado</a></td><td>Soundslice</td><td>D minor</td><td>-</td><td></td></tr>
+    <tr><td>Brazil</td><td>-</td><td>G major</td><td>-</td><td></td></tr>
+    <tr><td><a href="https://www.soundslice.com/slices/24Vkc/" target="_blank">Caravan</a></td><td>Soundslice</td><td>F minor</td><td>-</td><td></td></tr>
+    <tr><td><a href="https://www.youtube.com/watch?v=wUboNe7KfxA&pp=ygUeY2hpbmVzZSBib3kgdmFuIGhlbWVydCBiYWNraW5n" target="_blank">China Boy</a></td><td>CVG Youtube</td><td>F major</td><td>Dominant Chains</td><td></td></tr>
+    <tr><td><a href="https://www.soundslice.com/slices/MnNkc/" target="_blank">Coquette</a></td><td>Soundslice</td><td>D major</td><td>251s</td><td></td></tr>
+    <tr><td><a href="https://www.soundslice.com/slices/jTNyc/" target="_blank">Danse norvégienne</a></td><td>Soundslice</td><td>D major</td><td>-</td><td></td></tr>
+    <tr><td><a href="https://www.soundslice.com/slices/bxfkc/" target="_blank">Daphne</a></td><td>Soundslice</td><td>D major</td><td>-</td><td></td></tr>
+    <tr><td><a href="https://www.soundslice.com/slices/SVckc/" target="_blank">Dark Eyes</a></td><td>Soundslice</td><td>D minor</td><td>-</td><td></td></tr>
+    <tr><td><a href="https://www.soundslice.com/slices/dMckc" target="_blank">Dinah</a></td><td>Soundslice</td><td>G major</td><td>-</td><td></td></tr>
+    <tr><td><a href="https://www.soundslice.com/slices/KfVkc/" target="_blank">Djangology</a></td><td>Soundslice</td><td>G major</td><td>-</td><td></td></tr>
+    <tr><td><a href="https://www.soundslice.com/slices/KYckc/" target="_blank">Django's Tiger</a></td><td>Soundslice</td><td>A major</td><td>Christophe</td><td></td></tr>
+    <tr><td><a href="https://www.soundslice.com/slices/g3ckc/" target="_blank">Douce Ambiance</a></td><td>Soundslice</td><td>G minor</td><td>-</td><td></td></tr>
+    <tr><td><a href="https://www.soundslice.com/slices/VdDyc/" target="_blank">Embraceable You</a></td><td>Soundslice</td><td>Eb major</td><td>-</td><td></td></tr>
+    <tr><td><a href="https://www.soundslice.com/slices/1Bfyc/" target="_blank">Exacty Like You</a></td><td>Soundslice</td><td>C major</td><td>-</td><td></td></tr>
+    <tr><td><a href="https://www.soundslice.com/slices/6zckc" target="_blank">Honeysuckle Rose</a></td><td>Soundslice</td><td>F major</td><td>251s</td><td></td></tr>
+    <tr><td><a href="https://www.soundslice.com/slices/QFDkc/" target="_blank">How High The Moon</a></td><td>Soundslice</td><td>G major</td><td>-</td><td></td></tr>
+    <tr><td><a href="https://www.soundslice.com/slices/75kkc/" target="_blank">Hungaria</a></td><td>Soundslice</td><td>G major</td><td>Dominant Chains</td><td></td></tr>
+    <tr><td><a href="https://www.soundslice.com/slices/StNkc/" target="_blank">I Can’t Give You Anything But Love</a></td><td>Soundslice</td><td>G major</td><td>Christophe</td><td></td></tr>
+    <tr><td><a href="https://www.soundslice.com/slices/qyckc/" target="_blank">I’ll See You In My Dreams</a></td><td>Soundslice</td><td>F major</td><td>-</td><td></td></tr>
+    <tr><td><a href="https://www.soundslice.com/slices/3Jfkc/" target="_blank">It Had To Be You</a></td><td>Soundslice</td><td>G major</td><td>-</td><td></td></tr>
+    <tr><td><a href="https://www.soundslice.com/slices/y7Vkc/" target="_blank">J’Attendrai</a></td><td>Soundslice</td><td>C major</td><td>-</td><td></td></tr>
+    <tr><td><a href="https://www.soundslice.com/slices/qzR2c/" target="_blank">Je me suis fait tout petit</a></td><td>Soundslice</td><td>B minor</td><td>-</td><td></td></tr>
+    <tr><td><a href="https://www.soundslice.com/slices/NJMkc/" target="_blank">Je Suis Seul Ce Soir</a></td><td>Soundslice</td><td>C major</td><td>-</td><td></td></tr>
+    <tr><td><a href="https://www.soundslice.com/slices/dsckc/" target="_blank">Joseph Joseph</a></td><td>Soundslice</td><td>A minor</td><td>-</td><td></td></tr>
+    <tr><td>La mer</td><td>-</td><td>-</td><td>-</td><td></td></tr>
+    <tr><td>Lady Be Good</td><td>-</td><td>-</td><td>-</td><td></td></tr>
+    <tr><td><a href="https://www.soundslice.com/slices/jXDkc/" target="_blank">Limehouse blues</a></td><td>Soundslice</td><td>G major</td><td>-</td><td></td></tr>
+    <tr><td><a href="https://www.soundslice.com/slices/MQ14c/" target="_blank">Lulu Swing</a></td><td>Soundslice</td><td>D major</td><td>-</td><td></td></tr>
+    <tr><td><a href="https://www.soundslice.com/slices/grNkc/" target="_blank">Manoir De Mes Reves</a></td><td>Soundslice</td><td>D major</td><td>-</td><td></td></tr>
+    <tr><td><a href="https://www.soundslice.com/slices/brNkc/" target="_blank">Minor Blues</a></td><td>Soundslice</td><td>G minor</td><td>-</td><td></td></tr>
+    <tr><td><a href="https://www.soundslice.com/slices/Y9Nkc/" target="_blank">Minor Swing</a></td><td>Soundslice</td><td>A minor</td><td>-</td><td></td></tr>
+    <tr><td><a href="https://www.soundslice.com/slices/dfyqc/" target="_blank">Mozology</a></td><td>Soundslice</td><td>-</td><td>-</td><td></td></tr>
+    <tr><td><a href="https://www.soundslice.com/slices/Z7ykc/" target="_blank">My Melancholy Baby</a></td><td>Soundslice</td><td>C major</td><td>Christophe</td><td></td></tr>
+    <tr><td><a href="https://www.soundslice.com/slices/LqVkc/" target="_blank">My Melancholy Baby</a></td><td>Soundslice</td><td>Eb major</td><td>Christophe</td><td></td></tr>
+    <tr><td><a href="https://www.soundslice.com/slices/Pj8kc/" target="_blank">Nuages</a></td><td>Soundslice</td><td>G major</td><td>-</td><td></td></tr>
+    <tr><td><a href="https://www.soundslice.com/slices/cgVyc/" target="_blank">Oriental shuffle</a></td><td>Soundslice</td><td>F major</td><td>-</td><td></td></tr>
+    <tr><td><a href="https://www.soundslice.com/slices/TFNkc/" target="_blank">Paquito</a></td><td>Soundslice</td><td>E minor</td><td>-</td><td></td></tr>
+    <tr><td><a href="https://www.soundslice.com/slices/WQM2c/" target="_blank">Sheik Of Araby</a></td><td>Soundslice</td><td>Bb major</td><td>Dominant Chains</td><td></td></tr>
+    <tr><td><a href="https://www.soundslice.com/slices/xPNkc/" target="_blank">Si Tu Savais</a></td><td>Soundslice</td><td>B minor</td><td>-</td><td></td></tr>
+    <tr><td><a href="https://www.youtube.com/watch?v=oQzRDCK2LkU&pp=ygUrc29tZSBvZiB0aGVzZSBkYXlzIGJhY2tpbmcgdHJhY2sgdmFuIGhlbWVydA%3D%3D" target="_blank">Some Of These Days</a></td><td>CVH Youtube</td><td>G major</td><td>Christophe, Dominant Chains</td><td></td></tr>
+    <tr><td><a href="https://www.soundslice.com/slices/VGyyc/" target="_blank">St James Infirmary</a></td><td>Soundslice</td><td>F minor</td><td>-</td><td></td></tr>
+    <tr><td><a href="https://www.soundslice.com/slices/Bmyyc/" target="_blank">St James Infirmary</a></td><td>Soundslice</td><td>D minor</td><td>-</td><td></td></tr>
+    <tr><td><a href="https://www.soundslice.com/slices/LRVkc/" target="_blank">Sweet Georgia Brown</a></td><td>Soundslice</td><td>G major</td><td>Dominant Chains</td><td></td></tr>
+    <tr><td><a href="https://www.soundslice.com/slices/gWfyc/" target="_blank">Sweet Sue</a></td><td>Soundslice</td><td>G major</td><td>-</td><td></td></tr>
+    <tr><td>Swing 42</td><td>-</td><td>-</td><td>-</td><td></td></tr>
+    <tr><td><a href="https://www.soundslice.com/slices/fCfyc/" target="_blank">Swing 48</a></td><td>Soundslice</td><td>G minor</td><td>-</td><td></td></tr>
+    <tr><td><a href="https://www.soundslice.com/slices/V4Jyc/" target="_blank">Swing for Ninine</a></td><td>Soundslice</td><td>A minor</td><td>-</td><td></td></tr>
+    <tr><td><a href="https://www.soundslice.com/slices/m3Vkc/" target="_blank">Swing Gitan</a></td><td>Soundslice</td><td>G minor</td><td>-</td><td></td></tr>
+    <tr><td><a href="https://www.soundslice.com/slices/D4ykc/" target="_blank">Tchavolo Swing</a></td><td>Soundslice</td><td>D minor</td><td>-</td><td></td></tr>
+    <tr><td><a href="https://www.soundslice.com/slices/WHPyc/" target="_blank">Them There Eyes</a></td><td>Soundslice</td><td>D Major</td><td>Christophe</td><td></td></tr>
+    <tr><td><a href="https://www.soundslice.com/slices/YmPXc/" target="_blank">There Will Never Be Another You</a></td><td>-</td><td>-</td><td>-</td><td></td></tr>
+    <tr><td><a href="https://www.youtube.com/watch?v=stK4T5jowJY&pp=ygUedG9wc3kgZ3lwc3kgamF6eiBiYWNraW5nIHRyYWNr" target="_blank">Topsy</td><td>Youtube Reboul</td><td>-</td><td>-</td><td></td></tr>
+    <tr><td><a href="https://www.youtube.com/watch?v=lUu1I-rlyxI&pp=ygUsd2hhdCBpcyB0aGlzIHRoaW5nIGNhbGxlZCBsb3ZlIGJhY2tpbmcgdHJhY2s%3D" target="_blank">What Is This Thing Called Love</a></td><td>GI Youtube</td><td>-</td><td>251s</td><td></td></tr>
+    <tr><td><a href="" target="_blank">xxx_blanksong</a></td><td>Soundslice</td><td>key</td><td>-</td><td></td></tr>
+    
+    
+    
+    
+  </tbody>
+</table>
 
-  <script>
-    function loadFavourites() {
-      const favs = localStorage.getItem('favourites');
-      return favs ? JSON.parse(favs) : [];
+<script>
+  function getCookie(name) {
+    const match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+    return match ? decodeURIComponent(match[2]) : null;
+  }
+
+  function setCookie(name, value, days = 365) {
+    const expires = new Date(Date.now() + days * 24 * 60 * 60 * 1000).toUTCString();
+    document.cookie = `${name}=${encodeURIComponent(value)}; expires=${expires}; path=/`;
+  }
+
+  function loadFavourites() {
+    try {
+      return JSON.parse(getCookie("favourites") || "[]");
+    } catch {
+      return [];
     }
+  }
 
-    function saveFavourites(favs) {
-      localStorage.setItem('favourites', JSON.stringify(favs));
-    }
+  function saveFavourites(favs) {
+    setCookie("favourites", JSON.stringify(favs));
+  }
 
-    function initTable() {
-      const favs = loadFavourites();
+  $(document).ready(function () {
+    const favs = loadFavourites();
 
-      $('#myTable tbody tr').each(function() {
-        const row = $(this);
-        const songUrl = row.find('td:first-child a').attr('href');
+    $('#myTable tbody tr').each(function () {
+      const songLink = $(this).find('td:nth-child(1) a');
+      const songURL = songLink.attr('href');
+      const isFav = favs.includes(songURL);
+      const star = $('<span class="star">&#9733;</span>');
+      const hidden = $('<span style="display:none;"></span>').text(isFav ? '1' : '0');
+      if (isFav) star.addClass('fav');
+      $(this).find('td:last').append(hidden).append(star);
+    });
 
-        if (favs.includes(songUrl)) {
-          row.find('.star').addClass('fav');
-          row.find('td:last-child span:first-child').text('1');
-        }
-      });
+    const table = $('#myTable').DataTable({
+      orderCellsTop: true,
+      fixedHeader: true,
+      pageLength: 100,
+      paging: false,
+      columnDefs: [
+        { targets: 3, orderDataType: "dom-text-numeric" }
+      ]
+    });
 
-      const table = $('#myTable').DataTable({
-        order: [[0, 'asc']],
-        columnDefs: [{ targets: 4, orderData: [4] }]
-      });
-
-      // Filter buttons
-      $('.filter-buttons button').on('click', function () {
-        $('.filter-buttons button').removeClass('active');
-        $(this).addClass('active');
-        const filter = $(this).data('filter');
-
-        if (filter === '*') {
-          table.search('').draw();
-        } else if (filter === 'Favourite') {
-          table
-            .rows()
-            .every(function () {
-              const fav = $(this.node()).find('td:last-child span:first-child').text();
-              this.visible(fav === '1');
-            });
-        } else {
-          table
-            .column(1)
-            .search(filter)
-            .draw();
-        }
-      });
-
-      // Toggle favorite star
-      $('#myTable tbody').on('click', '.star', function () {
-        const star = $(this);
-        const row = star.closest('tr');
-        const songUrl = row.find('td:first-child a').attr('href');
-        let favs = loadFavourites();
-
-        if (star.hasClass('fav')) {
-          star.removeClass('fav');
-          favs = favs.filter(f => f !== songUrl);
-          row.find('td:last-child span:first-child').text('0');
-        } else {
-          star.addClass('fav');
-          favs.push(songUrl);
-          row.find('td:last-child span:first-child').text('1');
-        }
-
-        saveFavourites(favs);
-      });
-    }
-
-    $(document).ready(() => {
-      Papa.parse('tracks.csv', {
-        download: true,
-        header: true,
-        skipEmptyLines: true,
-        complete: function (results) {
-          const data = results.data;
-          data.forEach(row => {
-            const favHidden = '<span style="display:none;">0</span>';
-            const starSpan = '<span class="star">&#9733;</span>';
-            const link = row.URL
-              ? `<a href="${row.URL}" target="_blank">${row.Song}</a>`
-              : row.Song;
-
-            $('#myTable tbody').append(`
-              <tr>
-                <td>${link}</td>
-                <td>${row.Type}</td>
-                <td>${row.Key}</td>
-                <td>${row.Details}</td>
-                <td>${favHidden}${starSpan}</td>
-              </tr>
-            `);
-          });
-
-          initTable();
+    $('#myTable thead tr.filters th').each(function (i) {
+      $('input', this).on('keyup change', function () {
+        if (table.column(i).search() !== this.value) {
+          table.column(i).search(this.value).draw();
         }
       });
     });
-  </script>
+
+    $('#myTable').on('click', '.star', function () {
+      const star = $(this);
+      const hiddenSpan = star.prev('span');
+      const row = star.closest('tr');
+      const songURL = row.find('td:nth-child(1) a').attr('href');
+
+      if (star.hasClass('fav')) {
+        star.removeClass('fav');
+        hiddenSpan.text('0');
+        const index = favs.indexOf(songURL);
+        if (index !== -1) favs.splice(index, 1);
+      } else {
+        star.addClass('fav');
+        hiddenSpan.text('1');
+        if (!favs.includes(songURL)) favs.push(songURL);
+      }
+
+      saveFavourites(favs);
+      table.row(row).invalidate().draw(false);
+    });
+
+    $('#randomBtn').on('click', function () {
+      const visibleFavs = [];
+
+      table.rows({ filter: 'applied' }).every(function () {
+        const row = $(this.node());
+        const isFav = row.find('td:last .star').hasClass('fav');
+        if (isFav) {
+          const url = row.find('td:nth-child(1) a').attr('href');
+          const title = row.find('td:nth-child(1) a').text();
+          visibleFavs.push({ url, title });
+        }
+      });
+
+      if (visibleFavs.length === 0) {
+        alert("No favourites found in filtered list!");
+        return;
+      }
+
+      const randomIndex = Math.floor(Math.random() * visibleFavs.length);
+      const choice = visibleFavs[randomIndex];
+      window.open(choice.url, '_blank');
+    });
+
+    $('#clearFavsBtn').on('click', function () {
+      let changed = false;
+      
+          const userConfirmed = confirm("Are you sure you want to clear favourites ?");
+    
+    if (!userConfirmed) {
+      // alert("Action canceled.");
+      return;
+    }
+
+      table.rows({ filter: 'applied' }).every(function () {
+        const row = $(this.node());
+        const star = row.find('.star');
+        const hidden = row.find('td:last span:first');
+        const url = row.find('td:nth-child(1) a').attr('href');
+
+        if (star.hasClass('fav')) {
+          star.removeClass('fav');
+          hidden.text('0');
+          const index = favs.indexOf(url);
+          if (index !== -1) {
+            favs.splice(index, 1);
+            changed = true;
+          }
+        }
+      });
+
+      if (changed) {
+        saveFavourites(favs);
+        table.draw(false);
+      }
+    });
+
+    $('#clearFiltersBtn').on('click', function () {
+      $('#myTable thead tr.filters th input').val('');
+      table.columns().search('').draw();
+    });
+  });
+
+  $.fn.dataTable.ext.order['dom-text-numeric'] = function (settings, col) {
+    return this.api().column(col, { order: 'index' }).nodes().map(function (td) {
+      return parseInt($(td).find('span:first').text()) || 0;
+    });
+  };
+</script>
 
 </body>
 </html>
